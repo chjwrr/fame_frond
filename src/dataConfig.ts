@@ -1,4 +1,4 @@
-export const twitterCallBackURL = 'http://localhost:3000/verifyTwitter'
+export const twitterCallBackURL = 'http://localhost:8000/verifyTwitter'
 export const twitterURL = ''
 export const docsURL = ''
 export const discordURL = ''
