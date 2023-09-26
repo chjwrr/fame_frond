@@ -1,0 +1,33 @@
+@import 'src/Common/common';
+.bgView {
+    width: 100%;
+    background-position: -20%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/images/homebg_w.png');
+    justify-content: space-between;
+    // padding-top: resize(160);
+    @media screen and (max-width: 768px) {
+        background-image: url('/images/homebg_m.png');
+        background-position: top;
+    };
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.title {
+  z-index: 10;
+    margin-top: 150px;
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    font-size: resize(24);
+    height: resize(40);
+    @media screen and (max-width: 768px) {
+        font-size: 24px;
+    }
+}
+.button {
+  cursor: pointer;
+  background-color: #AE7AFF;
+  padding: 20px 30px;
+}

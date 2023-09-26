@@ -1,0 +1,307 @@
+@import 'src/Common/common';
+
+.bgView {
+    width: 100%;
+    background-position: -20%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/images/homebg_w.png');
+    justify-content: space-between;
+    padding-top: resize(160);
+    @media screen and (max-width: 768px) {
+        background-image: url('/images/homebg_m.png');
+        padding-top: 130px;
+        background-position: top;
+    }
+}
+.logo {
+    width: resize(60);
+    height: resize(60);
+    position: relative;
+    margin-right: resize(16);
+    @media screen and (max-width: 768px) {
+        width: 30px;
+        height: 30px;
+        margin-right: 8px
+    }
+}
+.title {
+    font-family: var(--font-Satoshi);
+    font-weight: 900;
+    font-size: resize(66);
+    line-height: normal;
+    @media screen and (max-width: 768px) {
+        font-size: 33px
+    }
+}
+.des {
+    font-family: var(--font-Satoshi);
+    font-weight: 600;
+    font-size: resize(16);
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+        display: none;
+    }
+}
+.searchView {
+    border-radius: resize(2);
+    border: 1px solid #FFF;
+    background: #000;
+    box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.25);
+    padding: resize(24);
+    width: resize(440) !important;
+    margin-top: resize(24);
+    @media screen and (max-width: 768px) {
+        padding:24px 12px;
+        width: 100%;
+    };
+    position: relative;
+}
+.icon {
+    width: resize(24);
+    height: resize(24);
+    position: relative;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        width:16px;
+        height: 16px;
+    }
+}
+.icon1 {
+    width: resize(24);
+    height: resize(24);
+    position: relative;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+.inptTitle {
+    color: #fff;
+    font-family: var(--font-Satoshi);
+    font-weight: 400;
+    font-size: resize(14);
+    margin-left:resize(10);
+    @media screen and (max-width: 768px) {
+        font-size:14px;
+        margin-left:5px;
+    };
+}
+.input {
+    border: 0;
+    outline: 0;
+    flex:1;
+    font-family: var(--font-Satoshi);
+    font-weight: 400;
+    font-size: resize(14);
+    background-color: transparent;
+    @media screen and (max-width: 768px) {
+        font-size:14px;
+    }
+}
+.wrapperClassName {
+    flex: 1;
+    width: 100%;
+}
+.result {
+    margin-top: resize(-24);
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin-top: -200px;
+    }
+}
+.resultContent {
+    border: 1px solid #FFF;
+    background: #000;
+    box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.25);
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+.resultContentMore {
+    height: resize(90);
+    width: 100%;
+    animation: changeHeight 0.3s ;
+    overflow: hidden;
+    @media screen and (max-width: 768px) {
+        height:222px;
+        animation: changeHeightMobile 0.3s ;
+
+    }
+}
+
+@keyframes changeHeight {
+    0% {
+        height:0;
+        opacity:0
+    }
+
+    100% {
+        height:resize(90);
+        opacity:1;
+    }
+    
+}
+@keyframes changeHeightMobile {
+    0% {
+        height:0;
+        opacity:0
+    }
+
+    100% {
+        opacity:1;
+        height:222px
+    }
+    
+}
+
+
+.resSpace {
+    padding: resize(40);
+    @media screen and (max-width: 768px) {
+        padding: 0 20px;
+        padding-top: 40px;
+    }
+}
+.close {
+    width: resize(24);
+    height: resize(24);
+    position: relative;
+    margin-bottom: resize(20);
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        width: 24px;
+        height:  24px;
+        margin-bottom:  10px;
+    }
+}
+.avatar {
+    width: resize(60);
+    height: resize(60);
+    position: relative;
+    margin-right: resize(16);
+    border-radius: resize(2);
+    @media screen and (max-width: 768px) {
+         width: 60px;
+        height: 60px;
+        margin-right: 16px;
+    }
+}
+.resTitle {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(20);
+    @media screen and (max-width: 768px) {
+        font-size: 20px
+    }
+}
+.resDes {
+    font-family: var(--font-Satoshi);
+    font-weight: 500;
+    color: #9D9D9D;
+    font-size: resize(14);
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+.resNumber {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(16);
+    @media screen and (max-width: 768px) {
+        font-size: 16px;
+    }
+}
+.resMore {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #9D9D9D;
+    font-size: resize(14);
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+.tradeButton {
+    border-radius: resize(2);
+    border: 1px solid #000;
+    background: #AE7AFF;
+    padding:resize(8) resize(48);
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #000;
+    font-size: resize(14);
+    margin-right: resize(38);
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+        padding:8px;
+        width: 100%;
+        margin-right: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 20px 0;
+    }
+}
+.resLine {
+    width: 0px;
+    height: resize(40);
+    border: 0.5px dotted #fff;
+    margin: 0 resize(40);
+    @media screen and (max-width: 768px) {
+        height: 40px;
+        margin: 0 40px;
+    }
+}
+.share {
+    width: resize(16);
+    height: resize(16);
+    margin-left: resize(10);
+    position: relative;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        width: 16px;
+        height: 16px;
+        margin-left:5px
+    }
+}
+.resLineH {
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+}
+.reMoreItem {
+    flex:1;
+    height: resize(90);
+    justify-content: center;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    @media screen and (max-width: 768px) {
+        height: 74px;
+        width: 100%;
+    }
+}
+.tradeView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-end;
+        padding-bottom: 20px;
+    }
+}
+.priceView {
+    @media screen and (max-width: 768px) {
+        align-items: flex-end;
+    }
+}
+.resM {
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+}

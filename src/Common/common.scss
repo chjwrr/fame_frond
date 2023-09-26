@@ -1,0 +1,23 @@
+
+$vm_base: 1440;
+$vm_mobile_base: 375;
+$web_content:1300;
+$mobile_content:90%;
+
+@function vw($px) {
+  @return ($px / $vm_base) * 100vw;
+}
+@function vwm($px) {
+  @return ($px / $vm_mobile_base) * 100vw;
+}
+
+@function rem($px) {
+  @return ($px / 100) + rem;
+}
+
+@function resize($px) {
+  @return ($px*1300/1440) + px;
+}
+
+$header_height:resize(96);
+$header_height_mobile:48px;

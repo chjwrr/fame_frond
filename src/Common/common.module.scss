@@ -1,0 +1,67 @@
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rowBetween {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.rowCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.rowEnd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.columnCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mainView {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.mainContent {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width:768px) {
+    width:90%;
+  };
+  position: relative;
+}
+.webView {
+  display: flex;
+  @media (max-width: 768px) {
+      display: none;
+  }
+}
+.mobileView {
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}

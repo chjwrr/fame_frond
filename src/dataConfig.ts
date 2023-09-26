@@ -1,0 +1,8 @@
+export const twitterCallBackURL = 'http://localhost:3000/verifyTwitter'
+export const twitterURL = ''
+export const docsURL = ''
+export const discordURL = ''
+export const telegramURL = ''
+export const cookiesPolicyURL = ''
+export const privacyPolicyURL = ''
+export const searchTwitterChainID = '421613'

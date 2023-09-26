@@ -1,0 +1,529 @@
+@import 'src/Common/common';
+.bgView {
+    width: 100%;
+    background-position: -20%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/images/homebg_w.png');
+    justify-content: space-between;
+    padding-top: resize(160);
+    @media screen and (max-width: 768px) {
+        background-image: url('/images/homebg_m.png');
+        background-position: top;
+    };
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.personView {
+    display: flex;
+    flex-direction: row;
+    padding: resize(100) resize(150);
+    width: 100%;
+    @media screen and (max-width: 768px) {
+        padding: 0;
+        padding-top: 70px;
+        flex-direction: column;
+    };
+}
+.leftView {
+    display: flex;
+    flex-direction: column;
+    width: resize(240);
+    @media screen and (max-width: 768px) {
+        align-items: center;
+        width: 100%;
+    };
+}
+.title {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    font-size: resize(24);
+    margin-bottom: resize(48);
+    height: resize(40);
+    @media screen and (max-width: 768px) {
+        font-size: 24px;
+        margin-bottom:40px
+    }
+}
+
+.avatar {
+    width: resize(60);
+    height: resize(60);
+    position: relative;
+    // border-radius: resize(2);
+    margin-bottom: resize(16);
+    @media screen and (max-width: 768px) {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 16px
+    }
+}
+.resTitle {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(20);
+    @media screen and (max-width: 768px) {
+        font-size: 20px
+    }
+}
+.resTitle1 {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(18);
+    @media screen and (max-width: 768px) {
+        font-size: 16px
+    }
+}
+.resDes {
+    font-family: var(--font-Satoshi);
+    font-weight: 500;
+    color: #9D9D9D;
+    font-size: resize(14);
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+.resDesDes {
+    font-family: var(--font-Satoshi);
+    font-weight: 500;
+    color: #9D9D9D;
+    font-size: resize(12);
+    margin-top: resize(16);
+    @media screen and (max-width: 768px) {
+        font-size: 12x;
+        margin-top: 16px;
+        width:50%
+    }
+}
+.leftLine {
+    height: 0;
+    width: 100%;
+    border: 0.5px dotted #fff;
+    margin:resize(24) 0;
+    @media screen and (max-width: 768px) {
+        display: none;
+    };
+    width: resize(80);
+}
+.fameView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: resize(2);
+    border: 1px solid #FFF;
+    background: #000;
+    box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.25);
+    padding: resize(16)0;
+    @media screen and (max-width: 768px) {
+        padding: 16px 0
+    };
+    width: resize(150)
+}
+.fameTitle {
+    font-family: var(--font-Satoshi);
+    font-weight: 500;
+    color: #fff;
+    font-size: resize(14);
+    @media screen and (max-width: 768px) {
+        font-size: 12px
+    }
+}
+.fameValue {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #AE7AFF;
+    font-size: resize(24);
+    @media screen and (max-width: 768px) {
+        font-size: 24px
+    }
+}
+.fameDes {
+    font-family: var(--font-Satoshi);
+    font-weight: 500;
+    color: #484848;
+    font-size: resize(12);
+    @media screen and (max-width: 768px) {
+        font-size: 10px
+    }
+}
+.invite {
+    margin-top: resize(24);
+    @media screen and (max-width: 768px) {
+        margin-top:16px
+    }
+}
+.inviteIcon {
+    width: resize(20);
+    height: resize(20);
+    position: relative;
+    margin-left: resize(10);
+    cursor: pointer;
+}
+.link {
+    font-family: var(--font-Satoshi);
+    font-weight: 500;
+    color: #fff;
+    font-size: resize(12);
+    @media screen and (max-width: 768px) {
+        font-size: 10px;
+        display: none;
+    };
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: resize(100);
+    margin-top: resize(6);
+}
+.rightView {
+    padding-top: resize(88);
+    width: 100%;
+    @media screen and (max-width: 768px) {
+        padding-top:16px;
+        margin-bottom: 34px;
+    };
+}
+.youkey {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(14);
+    @media screen and (max-width: 768px) {
+        font-size: 12px
+    }
+}
+.keyContent {
+    width: 100%;
+    border: 1px solid #FFF;
+    background: #000;
+    // padding: resize(16) resize(24);
+    margin-top: resize(16);
+    @media screen and (max-width: 768px) {
+        padding:0;
+        margin-top: 16px
+    }
+}
+.keySpace {
+    padding: 0;
+    @media screen and (max-width: 768px) {
+        padding: 16px;
+    }
+}
+.avatar1 {
+    width: resize(40);
+    height: resize(40);
+    position: relative;
+    margin-right: resize(16);
+    border-radius: resize(2);
+    @media screen and (max-width: 768px) {
+         width: 60px;
+        height: 60px;
+        margin-right: 16px;
+    }
+}
+.resNumber {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(16);
+    @media screen and (max-width: 768px) {
+        font-size: 16px;
+    }
+}
+
+.resMore {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #9D9D9D;
+    font-size: resize(14);
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+.tradeButton {
+    border-radius: resize(2);
+    border: 1px solid #000;
+    background: #AE7AFF;
+    padding:resize(8) resize(48);
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #000;
+    font-size: resize(14);
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+        padding:8px;
+        width: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+.resLine {
+    width: 0px;
+    height: resize(40);
+    border: 0.5px dotted #fff;
+    margin: 0 resize(20);
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+.resLine1 {
+    width: 0px;
+    height: 40px;
+    border: 0.5px dotted #fff;
+    margin: 0 10px;
+    display: none;
+    @media screen and (max-width: 768px) {
+        display: flex
+    }
+}
+.share {
+    width: resize(16);
+    height: resize(16);
+    margin-left: resize(10);
+    position: relative;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        width: 16px;
+        height: 16px;
+        margin-left:5px
+    }
+}
+.resLineH {
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+}
+.reMoreItem {
+    flex:1;
+    height: resize(90);
+    justify-content: center;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    @media screen and (max-width: 768px) {
+        height: 74px;
+        width: 100%;
+        border-right: 0
+
+    }
+}
+.tradeView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+.priceView {
+    @media screen and (max-width: 768px) {
+        align-items: center;
+    }
+}
+.resM {
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.result {
+    border-top: 1px solid #fff;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        border-bottom: 1px solid #fff;
+        border-top: 0;
+
+    }
+}
+
+.resultContentMore {
+    height: resize(90);
+    width: 100%;
+    animation: changeHeight 0.3s ;
+    overflow: hidden;
+    @media screen and (max-width: 768px) {
+        height:318px;
+        animation: changeHeightMobile 0.3s ;
+
+    }
+}
+
+@keyframes changeHeight {
+    0% {
+        height:0;
+        opacity:0
+    }
+
+    100% {
+        height:resize(90);
+        opacity:1;
+    }
+    
+}
+@keyframes changeHeightMobile {
+    0% {
+        height:0;
+        opacity:0
+    }
+
+    100% {
+        opacity:1;
+        height:318px
+    }
+    
+}
+.icon {
+    width: resize(24);
+    height: resize(24);
+    position: relative;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        width:16px;
+        height: 16px;
+    }
+}
+.resSpace {
+    padding: resize(20);
+    @media screen and (max-width: 768px) {
+        padding: 20px;
+    }
+}
+.resSpace1 {
+    padding: resize(24) resize(20);
+    // border-bottom: 1px solid #fff;
+}
+.moreWidth {
+    width: resize(40);
+}
+.spaceLine {
+    display: none;
+    @media screen and (max-width: 768px) {
+        display: flex;
+        height: 1px;
+        width: 100%;
+        margin-bottom: 19px;
+        background-color: #fff;
+    }
+}
+.back {
+    width: resize(40);
+    height: resize(40);
+    margin-bottom: resize(48);
+    margin-left: resize(-60);
+    cursor: pointer;
+    margin-right: resize(20);
+    position: relative;
+}
+.topItem {
+    border-radius:resizee(2);
+    border: 1px solid #FFF;
+    // border: 2px solid #DBFF73;
+    background: #000;
+    box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.25);
+    padding: resize(16) resize(20) ;
+    width: resize(200);
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    margin-right: resize(20);
+    height: resize(100);
+    justify-content: space-between;
+    @media screen and (max-width: 768px) {
+        padding: 16px;
+        width: 100%;
+        margin-right: 0;
+    }
+}
+.topCliam {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #DBFF73;
+    font-size: resize(12);
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+    };
+    border-radius: 1px;
+    border: 1px solid #DBFF73;
+    width: fit-content;
+    padding: 0 resize(12);
+    cursor: pointer;
+}
+.topCliamDis {
+    border: 1px solid #595959;
+    color: #595959;
+}
+.topIcon {
+    width: resize(16);
+    height: resize(16);
+    position: relative;
+    margin-right: resize(4);
+    @media screen and (max-width: 768px) {
+        width: 16px;
+        height: 16px;
+        margin-right: 4px
+    }
+}
+.topRewardIcon {
+    width: resize(16);
+    height: resize(20);
+    position: relative;
+    margin-right: resize(4);
+    @media screen and (max-width: 768px) {
+        width: 16px;
+        height: 20px;
+        margin-right: 4px
+    }
+}
+.topRewardTitle {
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(24);
+    @media screen and (max-width: 768px) {
+        font-size: 24px
+
+    }
+}
+.topView {
+    margin-bottom: resize(30);
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+.connect {
+    padding: resize(4) 0;
+    font-family: var(--font-Satoshi);
+    font-weight: 700;
+    color: #fff;
+    font-size: resize(14);
+    @media screen and (max-width: 768px) {
+        font-size: 12px
+    };
+    border: 1px solid #FFF;
+    cursor: pointer;
+}
+.connectDis {
+    border: 1px solid #595959;
+    color: #595959;
+}
+.mobsel {
+    flex: 1;
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 8px;
+    color:#fff;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-Satoshi);
+    margin-bottom: 16px;
+}
+.mobselDis {
+    background-color: rgb(235, 240, 240,0.1);
+}

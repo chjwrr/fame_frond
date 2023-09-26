@@ -1,0 +1,32 @@
+@import 'src/Common/common';
+
+.question {
+  width:resize(25);
+  height:resize(25);
+  position:relative;
+  margin-left:resize(8);
+  cursor: pointer;
+}
+.questionSmall {
+  width:resize(20);
+  height:resize(20);
+  position:relative;
+  margin-left:resize(8);
+  cursor: pointer;
+  margin-top: resize(5);
+}
+.filled {
+  width:resize(16);
+  height:resize(16);
+  position:relative;
+  margin-left:resize(5);
+  cursor:pointer
+}
+.tipView {
+  width: resize(240);
+}
+.tipTitle {
+  font-size: resize(14);
+  font-family: var(--font-Poppins);
+  color:#000;
+}
