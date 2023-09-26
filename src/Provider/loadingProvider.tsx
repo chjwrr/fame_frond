@@ -1,10 +1,19 @@
 import styled from "styled-components";
 import React, {createContext, useContext, useState} from "react";
-import {animated, useSpring } from "react-spring";
 import { useNetwork } from "wagmi";
-import { isBrowser } from "react-device-detect"
+import { autoWidthVW, formatAccount } from "@/Common";
 import { getScanLink, getScanName } from "@/Contract/chains";
-import { formatAccount } from "@/Common";
+import { FlexView, FlexViewBetween } from "@/Components/View";
+import Lottie from 'react-lottie';
+import * as PendingJson from '../../public/lottlie/loading_pending.json'
+import * as SuccessJson from '../../public/lottlie/loading_success.json'
+import * as ErrorJson from '../../public/lottlie/loading_error.json'
+import * as ConfirmJson from '../../public/lottlie/loading_confirm.json'
+
+
+
+import { isBrowser } from "react-device-detect";
+
 
 export enum LoadingType {
   confirm=0,
@@ -15,28 +24,28 @@ export enum LoadingType {
 
 const LoadingConfig:any = {
   [LoadingType.confirm]:{
-    icon:'',
-    color:"#9165F6",
+    icon:ConfirmJson,
+    color:"#FF8D3A",
     title:"Waiting for Confirmation",
-    closeIcon:'',
+    closeIcon:'/images/close_black.png'
   },
   [LoadingType.pending]:{
-    icon:'',
+    icon:PendingJson,
     color:"#62DCF7",
     title:"Waiting for Transaction",
-    closeIcon:'',
+    closeIcon:'/images/close_black.png'
   },
   [LoadingType.error]:{
-    icon:'',
+    icon:ErrorJson,
     color:"#CF3E34",
     title:"Transaction Error",
-    closeIcon:'',
+    closeIcon:'/images/close_black.png'
   },
   [LoadingType.success]:{
-    icon:'',
+    icon:SuccessJson,
     color:"#7FF89F",
     title:"Transaction Success",
-    closeIcon:'',
+    closeIcon:'/images/close_black.png'
   }
 }
 export const LoadingContext = createContext({
@@ -52,7 +61,7 @@ export function useLoadingContext() {
 export default function LoadingProvider({children}:any) {
 
   const [visible,setVisible] = useState(false)
-  const [type,setType] = useState(LoadingType.confirm)
+  const [type,setType] = useState(LoadingType.pending)
   const [message,setMessage] = useState("")
   const [hash,setHash] = useState("")
   return(
@@ -80,7 +89,6 @@ export default function LoadingProvider({children}:any) {
       </LoadingContext.Provider>
   )
 }
-
 function Loading({visible,type,message,hash,onClose}:any) {
   const {chain={id:1}} = useNetwork()
   if(!visible){
@@ -91,15 +99,21 @@ function Loading({visible,type,message,hash,onClose}:any) {
       <LoadingContent className="animate__animated animate__slideInUp animate__faster">
         <FlexViewBetween>
           <FlexView>
-            {(type===LoadingType.confirm || type===LoadingType.pending) && <RotateImage icon={LoadingConfig[type].icon}></RotateImage>}
-            {(type===LoadingType.success || type===LoadingType.error) && <StatusIcon src={LoadingConfig[type].icon}></StatusIcon>}
+            <Lottie options={{
+              loop: true,
+              autoplay: true,
+              animationData: LoadingConfig[type].icon,
+              rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+              }
+            }} width={isBrowser?100:40} height={isBrowser?100:40}/>
             <LoadingTitle
               style={{color:LoadingConfig[type].color}}
             >
               {LoadingConfig[type].title}
             </LoadingTitle>
           </FlexView>
-          <Image onClick={onClose} src={LoadingConfig[type].closeIcon}/>
+          <CloseIcon onClick={onClose} src={LoadingConfig[type].closeIcon}/>
         </FlexViewBetween>
         <DescContainer>
           {(type===LoadingType.confirm || type===LoadingType.error) && <LoadingDesc>
@@ -123,64 +137,38 @@ function Loading({visible,type,message,hash,onClose}:any) {
     </ModalView>
   )
 }
-function RotateImage({icon}:any) {
-  const styles = useSpring({
-    loop: true,
-    from: { rotateZ: 0 },
-    to: { rotateZ: 360 },
-    config: {
-        duration: 1500,
-    },
-  })
-
-  return (
-    <StatusIcon
-      style={{...styles}}
-      src={icon}
-    ></StatusIcon>
-  )
-}
-const Image = styled.img`
-  width: 30px;
-  height: 30px;
+const CloseIcon = styled.img`
+  width:${autoWidthVW(40)};
+  height:${autoWidthVW(40)};
+  position:relative;
   @media (max-width: 768px) {
-    width: 20px;
-    height: 20px;
-  }
-`
-const FlexViewBetween = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`
-const FlexView = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    width:${autoWidthVW(20)};
+    height:${autoWidthVW(20)};
+  };
+  cursor:pointer
 `
 const LoadingContent = styled.div`
-  width:960px;
-  padding:40px 30px;
+  width:${autoWidthVW(959)};
+  padding:${autoWidthVW(40)} ${autoWidthVW(30)};
   position:relative;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: ${autoWidthVW(20)};
   @media (max-width: 768px) {
-    width:350px;
-    padding:20px 15px;
-    border-radius: 10px
+    width:90%;
+    padding:${autoWidthVW(20)} ${autoWidthVW(15)};
+    border-radius: ${autoWidthVW(10)};
   };
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 `
 const LoadingTitle = styled.div`
-  font-size: 32px;
+  font-size: ${autoWidthVW(32)};
   font-family: Axiforma-Bold, Axiforma;
   font-weight: bold;
   color: #000;
-  margin-left:30px;
+  margin-left: ${autoWidthVW(30)};
   @media (max-width: 768px) {
-    font-size: 14px;
-    margin-left: 10px
+    font-size: ${autoWidthVW(14)};
+    margin-left: ${autoWidthVW(10)};
   }
 `
 const DescContainer = styled.div`
@@ -188,15 +176,15 @@ const DescContainer = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items: flex-start;
-  font-size: 36px;
-  padding-left:150px;
+  font-size: ${autoWidthVW(36)};
+  padding-left:${autoWidthVW(150)};
   @media (max-width: 768px) {
-    padding-left:50px;
-    font-size:18px
+    padding-left:${autoWidthVW(50)};
+    font-size: ${autoWidthVW(18)};
   }
 `
 const LoadingDesc = styled.div`
-  font-size: 32px;
+  font-size: ${autoWidthVW(32)};
   font-family: Axiforma-Bold, Axiforma;
   font-weight: bold;
   color: #000;
@@ -205,38 +193,40 @@ const LoadingDesc = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  word-break: break-all;
+  width:${autoWidthVW(650)};
   @media (max-width: 768px) {
-    font-size:16px
-  }
+    font-size: ${autoWidthVW(16)};
+    width:100%
+  };
 `
 const LoadingTips = styled.div`
-  font-size:20px;
+  font-size: ${autoWidthVW(20)};
   font-weight: 400;
   color: #000;
-  margin-top:15px;
+  margin-top:${autoWidthVW(15)};
   opacity:0.8;
   @media (max-width: 768px) {
-    font-size: 14px
+    font-size: ${autoWidthVW(14)};
   }
 `
 const LoadingHashView = styled.div`
-  font-size:14px;
+  font-size:${autoWidthVW(16)};
   color:#000;
-  margin-top:15px;
+  margin-top:${autoWidthVW(15)};
   cursor:pointer;
   text-decoration:underline;
   @media (max-width: 768px) {
-    font-size:12px
+    font-size:${autoWidthVW(14)};
   }
 `
-const StatusIcon = styled(animated.img)`
-  width:112px;
+const StatusIcon = styled.img`
+  width:${autoWidthVW(112)};
   height:auto;
   @media (max-width: 768px) {
-    width:40px
+    width:${autoWidthVW(40)};
   }
 `
-
 const ModalView = styled.div`
   position:fixed;
   top:0;

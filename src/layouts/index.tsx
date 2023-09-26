@@ -7,6 +7,7 @@ import ModalProvider from '@/Provider/modalProvider';
 import NoticeProvider from '@/Provider/NoticeProvider';
 import LoadingProvider from '@/Provider/loadingProvider';
 import { PersistGate } from 'redux-persist/integration/react';
+import ReactQueryProvider from '@/Provider/ReactQueryProvider'
 import './index.less'
 import Header from '@/Components/Header'
 
@@ -16,14 +17,16 @@ export default function Layout() {
       <Provider store={reduxStore}>
         <PersistGate loading={null} persistor={persistor}>
           <Web3ModalProvider>
-            <LoadingProvider>
-              <ModalProvider>
-                <NoticeProvider>
-                  <Header/>
-                  <Outlet />
-                </NoticeProvider>
-              </ModalProvider>
-            </LoadingProvider>
+            <ReactQueryProvider>
+              <LoadingProvider>
+                <ModalProvider>
+                  <NoticeProvider>
+                    <Header/>
+                    <Outlet />
+                  </NoticeProvider>
+                </ModalProvider>
+              </LoadingProvider>
+            </ReactQueryProvider>
           </Web3ModalProvider>
         </PersistGate>
       </Provider>

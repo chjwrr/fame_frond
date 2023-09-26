@@ -23,14 +23,32 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
   const currentUserInfo = useCurrentUserInfo()
   const userInfo = useUserInfo()
 
+  // supply == 1的时候 最后一个key不让卖
+  // supply > 1的时候 sellAmt <= userBal && sellAmt <= supply -1
+
+  function getMax(){
+    const supply = Number((result.supply || result.more.supply))
+    console.log('supply===',supply)
+    console.log('tradeInfo.data===',tradeInfo.data)
+    let maxValue = 0
+    if (supply == 1){
+      maxValue =  Number(tradeInfo.data?.keyAmout) - 1
+    }
+    if (supply > 1){
+      maxValue = Math.min(tradeInfo.data?.keyAmout,supply - 1)
+    }
+    console.log('maxValue===',maxValue)
+    return maxValue
+  }
+
 
   function onAmountChange(e:any){
     if (!Number(e.target.value)){
       setAmount(0)
     }else {
       if(selectIndex == 1){
-        if (Number(e.target.value) + 1 > Number(tradeInfo.data?.keyAmout)){
-          setAmount(Number(tradeInfo.data?.keyAmout) - 1)
+        if (Number(e.target.value) > getMax()){
+          setAmount(getMax())
         }else {
           setAmount(Number(e.target.value))
         }
@@ -41,6 +59,7 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
   }
 
   function onMinus(){
+    if (tradeInfo.isLoading)return
     if (!amount) return
     if (!Number(amount)) return
     if (amount <= 0) return
@@ -49,8 +68,9 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
   }
 
   function onAdd(){
+    if (tradeInfo.isLoading)return
     if (selectIndex == 1){
-      if (amount + 1 >= Number(tradeInfo.data?.keyAmout)){
+      if (amount >= getMax()){
         return
       }else {
         const value = Number(amount) + 1
@@ -92,7 +112,7 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
     if (selectIndex == 0){
       const args = [result.subject_id,amount, currentUserInfo.referred_by || ZeroAddress]
       console.log('buy args=',args)
-  
+
       sendTransaction.mutate({
         title:'Buy',
         func:fameContract.buyShares,
@@ -101,6 +121,8 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
           value:tradeInfo.data?.priceAfterFee
         },
         onSuccess:()=>{
+          console.log('1')
+
           userInfo.refetch()
           onSuccess && onSuccess()
         },
@@ -117,6 +139,8 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
         func:fameContract.sellShares,
         args:args,
         onSuccess:()=>{
+          console.log('2')
+
           userInfo.refetch()
           onSuccess && onSuccess()
         },
@@ -157,13 +181,9 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
   const numberInfo =  <div className={styles.addView}>
     <span className={styles.resDes}>Quantity</span>
     <div className={commonStyles.row}>
-      <div className={styles.add} onClick={onMinus}>
-        <Image fill alt='' src={'/images/minus.png'}/>
-      </div>
+      <img className={styles.add} onClick={onMinus} src={'/images/minus.png'}/>
       <input type='tel' className={styles.input} value={amount} onChange={onAmountChange}/>
-      <div className={styles.add} onClick={onAdd}>
-        <Image fill alt='' src={'/images/plus.png'}/>
-      </div>
+      <img className={styles.add} onClick={onAdd} src={'/images/plus.png'}/>
     </div>
   </div>
 
@@ -172,9 +192,7 @@ export default function TradeModal({onClose,result,onSuccess}:any) {
       <LoadingView isLoading={isLoading}/>
       <div className={`${commonStyles.rowBetween} ${styles.space}`}>
         <span className={styles.title}>Trade</span>
-        <div className={styles.close} onClick={onClose}>
-          <Image fill alt='' src={'/images/closeicon.png'}/>
-        </div>
+        <img className={styles.close} onClick={onClose} src={'/images/closeicon.png'}/>
       </div>
       <div className={styles.line}/>
       <div className={`${commonStyles.column} ${styles.space}`}>

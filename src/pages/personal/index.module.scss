@@ -451,8 +451,8 @@
     };
     border-radius: 1px;
     border: 1px solid #DBFF73;
-    width: fit-content;
-    padding: 0 resize(12);
+    width: fit-content !important;
+    padding: 0 resize(10);
     cursor: pointer;
 }
 .topCliamDis {

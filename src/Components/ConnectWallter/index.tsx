@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
-import { useAccount, useConnect, useNetwork } from 'wagmi'
+import { useAccount, useConnect, useNetwork, useSwitchNetwork } from 'wagmi'
 import useTranslationLanguage from '@/Hooks/useTranslationLanguage';
 import { FlexView, FlexViewCenter, FlexViewColumn, FlexViewBetween, FlexViewCenterColumn, FlexViewEnd } from '../View';
 import { autoWidthVW, formatAccount } from '@/Common';
@@ -21,6 +21,7 @@ import { useUserInfo } from '@/Contract';
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { useNavigate, useSearchParams } from 'umi';
 import { useWeb3Modal } from '@web3modal/react';
+import { arbitrumGoerli } from 'viem/chains';
 
 
 export default function ConnectWallet() {
@@ -36,7 +37,15 @@ export default function ConnectWallet() {
   const dispatch = useDispatch()
   console.log('address===',address,isConnected,chain)
   const userInfo = useUserInfo()
-  const { open, close } = useWeb3Modal()
+
+
+  useEffect(()=>{
+    if (address){
+      if (!isLogin){
+        setIsLogin(true)
+      }
+    }
+  },[address])
 
   useEffect(()=>{
     watchAccount(
@@ -49,19 +58,47 @@ export default function ConnectWallet() {
 
 
   async function onMetamask(){
-    // console.log('链接钱包成功',connectInfo)
-    // setShow(false)
-    // onLogin(connectInfo.account)
-    open && open()
+    const connectInfo = await connect({
+      connector:new MetaMaskConnector({
+        chains: [ArbitrumGoerli_Chain],
+        options:{}
+      })
+    })
+    console.log('链接钱包成功',connectInfo)
+    localStorage.setItem('wagmi.injected.shimDisconnect', "1")
+    setShow(false)
+    onLogin(connectInfo.account)
+
   }
 
   async function onWalletconnect(){
-    open && open()
-  }
-  function onConnect(){
-    open && open()
+    const connectInfo = await connect({
+      connector:new WalletConnectConnector({
+        chains: [ArbitrumGoerli_Chain],
+        options:{
+          projectId:'771442ad0bb44651b29f3163b52147d3'
+        }
+      })
+    })
+    console.log('链接钱包成功',connectInfo)
+    localStorage.setItem('wagmi.injected.shimDisconnect', "1")
+    setShow(false)
+    onLogin(connectInfo.account)
   }
 
+  const {switchNetwork} = useSwitchNetwork()
+
+  async function onConnect(){
+    if (address){
+      if (chain?.id != ArbitrumGoerli_Chain.id){
+        switchNetwork && switchNetwork(ArbitrumGoerli_Chain.id)
+      }else {
+        setShow(true)
+      }
+    }else {
+      setShow(true)
+    }
+  }
 
   async function onDisconnect(){
     await disconnect()
@@ -70,6 +107,7 @@ export default function ConnectWallet() {
     dispatch(saveAuthorization({}))
     dispatch(saveCurrentInfo({}))
     console.log('清除本地存的数据')
+    localStorage.removeItem('wagmi.injected.shimDisconnect')
   }
 
   function onLogin(account:string){
@@ -122,6 +160,8 @@ export default function ConnectWallet() {
           dispatch(saveCurrentInfo(useInfo))
 
           setTimeout(() => {
+            console.log('3')
+
             userInfo.refetch()
           }, 1500);
           setIsLogin(true)
@@ -135,8 +175,10 @@ export default function ConnectWallet() {
       console.log('e===',e)
     })
   }
+
   function onUserClick(){
     if (isLogin){
+      console.log('4')
       userInfo.refetch()
       naviagate('/personal')
     }else {

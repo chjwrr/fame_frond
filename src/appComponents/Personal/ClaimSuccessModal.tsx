@@ -18,8 +18,11 @@ export default function ClaimSuccessModal({onClose,onSuccess,value}:any) {
       <div className={`${commonStyles.columnCenter} ${styles.space}`}>
         <img className={styles.icon} src={'/images/check.png'}/>
         <div className={commonStyles.row}>
-          <span className={styles.con}>You successfully claimed</span>
-          <span className={styles.conVlue}>{value} ETH</span>
+          <span className={styles.con}>
+            You successfully claimed
+            <span className={styles.conVlue}>{value}</span>
+            ETH
+            </span>
         </div>
         {/* <div onClick={onClaim} className={`${commonStyles.rowCenter} ${styles.button}`}>View Transactions</div> */}
       </div>

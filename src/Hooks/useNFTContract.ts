@@ -1,5 +1,5 @@
 import { RefreshConfig } from './../Common/index';
-import { useQuery } from 'react-query';
+import { useQuery } from 'umi';
 import { LoadingContext, LoadingType } from '@/Provider/loadingProvider';
 import { ApprovalState } from '@/Common';
 import { AddressMap } from '../Contract/addresses';

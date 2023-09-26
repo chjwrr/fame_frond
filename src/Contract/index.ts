@@ -1,7 +1,7 @@
 import { GasInfo, formatBalance, formatNumber } from '@/Common';
 import { BigNumberish, Contract, MaxUint256, TransactionResponse, ethers, formatUnits, parseUnits } from 'ethers';
 import { useTokenAllowance, useApprove } from '@/Hooks/useTokenContract';
-import { useMutation, useQuery } from 'umi';
+import { useMutation, useQuery } from 'react-query';
 import { Getter_ADDRESSSES, USDT_ADDRESSSES } from '@/Contract/addresses';
 import { getContract, readContract } from '@wagmi/core'
 import { ApprovalState, config } from '@/Common';
@@ -296,7 +296,6 @@ export function useUserInfo(){
   async function fetchData(){
     try {
       if (!address || !chain || !chain.id){
-        console.log('-00-0-')
         return
       }
       console.log('authorizationInfo-=-=-=-=',authorizationInfo)
@@ -318,9 +317,9 @@ export function useUserInfo(){
       console.log('useUserInfo error=',e)
     }
   }
-  return useQuery(["useUserInfo" + address], fetchData, {
+  return useQuery(["useUserInfo",address], fetchData, {
     enabled:!!address,
-    refetchInterval: config.shortRefreshInterval,
+    refetchInterval: config.longRefreshInterval,
   })
 }
 
@@ -382,7 +381,7 @@ export function usePersonalKeysInfo(){
       })
 
       const result:any = await getterContract?.getSubjectsUserInfo(sid,address)
-      console.log('keys result===',result)
+      console.log('请求用户的keys===',result)
 
       let keys:any = []
       currentUserInfo.balances && currentUserInfo.balances.map((it:any,index:number)=>{
@@ -394,7 +393,7 @@ export function usePersonalKeysInfo(){
           balance:it.balance,
           subject_id:it.subject_id,
           price:result[index][0],
-          supply:result[index][2],
+          supply:Number(result[index][2].toString()),
           tvl:result[index][3],
           mc:result[index][4],
           subjectIncome:result[index][5],

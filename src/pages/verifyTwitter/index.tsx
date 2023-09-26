@@ -61,6 +61,8 @@ export default function VerifyTwitter() {
         }
     }).then((res:any)=>{
         console.log('res===',res)
+        console.log('5')
+
         userInfo.refetch()
         navigate('/personal')
     }).catch((e:any)=>{

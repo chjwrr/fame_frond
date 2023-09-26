@@ -58,7 +58,7 @@ export default function Home() {
   function onClose(){
     setShowResult(false)
   }
-  return <div/>
+
   return (
     <div className={commonStyles.mainView}>
       <div className={`${commonStyles.columnCenter} ${styles.bgView}`} style={{height:windowHeight}}>
