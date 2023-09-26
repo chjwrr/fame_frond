@@ -317,7 +317,7 @@ export function useUserInfo(){
       console.log('useUserInfo error=',e)
     }
   }
-  return useQuery(["useUserInfo",address], fetchData, {
+  return useQuery(["useUserInfo"+address], fetchData, {
     enabled:!!address,
     refetchInterval: config.longRefreshInterval,
   })

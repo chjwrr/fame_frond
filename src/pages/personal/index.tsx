@@ -19,6 +19,7 @@ import { formatUnits } from 'ethers';
 import { twitterCallBackURL } from '@/dataConfig';
 import { useAuthorization, useCurrentUserInfo } from '@/Redux/setting';
 import { useNavigate } from 'umi';
+import Identicon from 'identicon.js'
 
 export default function PersonalCenter() {
   const [windowHeight,setWindowHeight] = useState('fit-content')
@@ -26,6 +27,13 @@ export default function PersonalCenter() {
   const userInfo = useUserInfo()
   const currentUserInfo = useCurrentUserInfo()
   const {address} = useAccount()
+
+  const options = {
+    foreground: [255, 255, 255, 255] as  [number, number, number, number],
+    background: [0, 0, 0, 1] as  [number, number, number, number],
+    size: 80,
+  };
+  const avatarData = new Identicon(String(address),options).toString();
 
   console.log('PersonalCenter userInfo===',userInfo.data)
   useEffect(()=>{
@@ -50,12 +58,7 @@ export default function PersonalCenter() {
     }
   }}>
     {currentUserInfo.ProfileImageUrl ? <img className={styles.avatar} src={currentUserInfo.ProfileImageUrl || ''} />: <div>
-      {/* <Blockie seed={String(address || '')} size={20}/> */}
-      <div style={{
-        width:50,
-        height:50,
-        background:"red"
-      }}></div>
+      <img className={styles.avatar} src={'data:image/png;base64,'+avatarData}/>
     </div>}
     <span className={styles.resTitle}>{currentUserInfo.name || formatAccount(address)}</span>
     <span className={styles.resDes}>{currentUserInfo.screen_name ? '@' + currentUserInfo.screen_name : ''}</span>
